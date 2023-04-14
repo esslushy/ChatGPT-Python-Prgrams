@@ -1,0 +1,45 @@
+def check_if_last_char_is_a_letter(txt: str) -> bool:
+    """
+    Create a function that returns True if the last character
+    of a given string is an alphabetical character and is not
+    a part of a word, and False otherwise.
+    Note: "word" is a group of characters separated by space.
+
+    Examples:
+    >>> check_if_last_char_is_a_letter('apple pie')
+    False
+    >>> check_if_last_char_is_a_letter('apple pi e')
+    True
+    >>> check_if_last_char_is_a_letter('apple pi e ')
+    False
+    >>> check_if_last_char_is_a_letter('')
+    False
+    """
+    if len(txt) == 0:   # if the input is an empty string return False
+        return False
+    last_char = txt[-1]  # get the last character of the input string
+    if not last_char.isalpha():  # check if it is not an alphabetical character
+        return False
+    words = txt.split()  # split the input string by spaces to get list of words
+    last_word = words[-1]  # get the last word in the list
+    if len(last_word) == 1 and last_word.isalpha():  # if the last word is just one letter and it is alphabetical
+        return True
+    else:
+        return False
+
+def check(candidate):
+    assert candidate('apple') == False
+    assert candidate('apple pi e') == True
+    assert candidate('eeeee') == False
+    assert candidate('A') == True
+    assert candidate('Pumpkin pie ') == False
+    assert candidate('Pumpkin pie 1') == False
+    assert candidate('') == False
+    assert candidate('eeeee e ') == False
+    assert candidate('apple pie') == False
+    assert candidate('apple pi e ') == False
+
+def test_check():
+    check(check_if_last_char_is_a_letter)
+
+test_check()
